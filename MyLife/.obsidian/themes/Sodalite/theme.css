@@ -1,0 +1,654 @@
+/*
+ * Sodalite for Obsidian, https://github.com/tomzorz/Sodalite
+ *
+ * Obsidian exposes most of its look as CSS variables, so the theme sets those
+ * first and only reaches for selectors where no variable exists.
+ */
+
+/* tokens */
+
+.theme-dark {
+    --sdlt-accent: #8BA4CC;
+    --sdlt-accent-muted: #304F80;
+    --sdlt-text-muted: #cacaca;
+    --sdlt-text-faint: #909090;
+    --sdlt-border: #1A1F28;
+    --sdlt-base-bg-start: #202028;
+    --sdlt-base-bg-end: #1B2020;
+    --sdlt-content-bg-start: #222832;
+    --sdlt-content-bg-end: #212223;
+    --sdlt-overlay-bg: rgba(255, 255, 255, 0.05);
+    --sdlt-overlay-border: rgba(255, 255, 255, 0.08);
+    --sdlt-tag-indicator: #caca00;
+    --sdlt-search-border: #404040;
+    --sdlt-heading-font: "Futura Md BT", Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+    --sdlt-titlebar-height: 24px;
+    --sdlt-note-header-height: 56px;
+    --sdlt-nav-header-height: var(--header-height);
+    --sdlt-tree-inset: 4px;
+
+    --sdlt-gradient-base: linear-gradient(135deg, var(--sdlt-base-bg-start), var(--sdlt-base-bg-end));
+    --sdlt-gradient-content: linear-gradient(135deg, var(--sdlt-content-bg-start), var(--sdlt-content-bg-end));
+    --sdlt-gradient-glass: linear-gradient(135deg,
+        color-mix(in srgb, var(--sdlt-content-bg-start) 30%, transparent),
+        color-mix(in srgb, var(--sdlt-content-bg-end) 30%, transparent));
+    --sdlt-gradient-subtle: linear-gradient(160deg, transparent, rgba(255, 255, 255, 0.02));
+    --sdlt-gradient-sheen: linear-gradient(160deg, transparent, rgba(255, 255, 255, 0.05));
+    --sdlt-shadow-active: 0 0 3px 1px rgba(0, 0, 0, 0.5);
+    --sdlt-shadow-popover: 0 3.2px 7.2px 0 rgba(0, 0, 0, 0.132), 0 0.6px 1.8px 0 rgba(0, 0, 0, 0.108);
+    --sdlt-shadow-modal: 0 6.4px 14.4px 0 rgba(0, 0, 0, 0.132), 0 1.2px 3.6px 0 rgba(0, 0, 0, 0.108);
+
+    /* Obsidian: icons a notch larger than stock */
+    --icon-xs: 16px;
+    --icon-s: 18px;
+    --icon-m: 18px;
+    --icon-l: 20px;
+
+    /* Obsidian: layout */
+    --header-height: 48px;
+    --ribbon-width: 48px;
+    --file-line-width: 100%;
+    --file-header-justify: start;
+    --file-header-border: 2px solid var(--sdlt-border);
+
+    /* Obsidian: let the Sodalite gradients show through the chrome */
+    --titlebar-background: transparent;
+    --titlebar-background-focused: transparent;
+    --ribbon-background: transparent;
+    --ribbon-background-collapsed: transparent;
+    --tab-container-background: transparent;
+    --sidebar-tab-container-background: transparent;
+    --file-header-background: transparent;
+    --file-header-background-focused: transparent;
+    --status-bar-background: transparent;
+    --status-bar-border-width: 0;
+    --status-bar-radius: 0;
+    --status-bar-font-size: 12px;
+
+    /* Obsidian: square tabs; the active one keeps the note background, so it joins the note below */
+    --tab-outline-width: 2px;
+    --tab-outline-color: var(--sdlt-border);
+    --tab-radius-active: 0;
+    --tab-curve: 0px;
+    --tab-text-color: var(--sdlt-text-faint);
+    --tab-text-color-focused: var(--sdlt-text-muted);
+    --tab-text-color-active: white;
+    --tab-text-color-focused-active: white;
+    --tab-text-color-focused-active-current: white;
+
+    /* Obsidian: lists */
+    --nav-item-color: var(--sdlt-text-muted);
+    --nav-tag-radius: 0;
+    --nav-tag-color: var(--sdlt-text-muted);
+
+    /* Obsidian: popovers */
+    --menu-background: rgba(0, 0, 0, 0.3);
+    --menu-backdrop-filter: blur(12px);
+    --menu-border-width: 2px;
+    --menu-border-color: var(--sdlt-border);
+    --menu-radius: 8px;
+    --menu-shadow: var(--sdlt-shadow-popover);
+    --suggestion-background: var(--menu-background);
+    --suggestion-backdrop-filter: var(--menu-backdrop-filter);
+    --tooltip-background: rgba(0, 0, 0, 0.4);
+    --tooltip-font-size: 1em;
+    --tooltip-padding: 6px 12px;
+    --notice-background: color-mix(in srgb, var(--sdlt-accent-muted) 30%, transparent);
+    --prompt-background: transparent;
+
+    /* Obsidian: content */
+    --text-selection: var(--sdlt-accent-muted);
+    --callout-radius: 0;
+    --callout-padding: 18px;
+    --graph-line: #404050;
+
+    /* Obsidian: a thin scrollbar line that widens while the pointer is over its pane */
+    --scrollbar-width: 6px;
+    --scrollbar-height: 6px;
+    --scrollbar-radius: 0;
+    --scrollbar-border-width: 0 0 0 4px;
+}
+
+.is-tablet.theme-dark {
+    --titlebar-background: transparent;
+    --titlebar-background-focused: transparent;
+}
+
+.mod-windows,
+.mod-linux {
+    /* the window buttons live in the title strip, so tabs need no room for them */
+    --frame-right-space: 0px;
+}
+
+.workspace-leaf-content:hover,
+.modal-container,
+.modal {
+    --scrollbar-border-width: 0;
+}
+
+/* background */
+
+body {
+    background: var(--sdlt-gradient-base);
+}
+
+/*
+ * title strip: a 24px band above the workspace with the window buttons; the main window also shows its title
+ * and the status bar there. The settings window keeps Obsidian's own title bar, without a title.
+ */
+
+body:not(.is-mobile) .workspace {
+    padding-top: var(--sdlt-titlebar-height);
+}
+
+body.is-frameless.is-hidden-frameless:not(.is-popout-modal) .titlebar {
+    height: var(--sdlt-titlebar-height);
+    -webkit-app-region: drag;
+}
+
+body.is-frameless.is-hidden-frameless:not(.is-popout-window, .is-popout-modal) .titlebar .titlebar-text {
+    display: block;
+    inset-inline-start: 64px;
+    width: auto;
+    height: auto;
+    padding: 0;
+    line-height: var(--sdlt-titlebar-height);
+    font-weight: normal;
+}
+
+body:not(.is-popout-window, .is-popout-modal) .titlebar-text::after {
+    content: " - https://tmz.io/sodalite v0.10.0";
+    opacity: 0.5;
+}
+
+body.is-popout-modal .titlebar-text {
+    display: none;
+}
+
+.status-bar {
+    inset-block: 0 auto;
+    inset-inline-end: 136px;
+}
+
+.mod-macos .status-bar {
+    inset-inline-end: 0;
+}
+
+@media (max-width: 1280px) {
+    .status-bar {
+        display: none;
+    }
+}
+
+/* ribbon */
+
+.workspace-ribbon.mod-primary {
+    border-inline-end: 0;
+}
+
+.workspace-ribbon.mod-primary::before {
+    display: none;
+}
+
+:is(.mod-windows, .mod-linux) .workspace-ribbon .sidebar-toggle-button {
+    top: var(--sdlt-titlebar-height);
+}
+
+.side-dock-ribbon-action,
+.workspace-tab-header,
+.nav-action-button {
+    --icon-color: var(--sdlt-text-muted);
+    --icon-color-hover: var(--sdlt-text-muted);
+}
+
+/* panes: one gradient across all of them, rounded where the left sidebar starts */
+
+.workspace-split {
+    background: var(--sdlt-gradient-content) fixed;
+}
+
+.workspace > .workspace-split {
+    border-top: 2px solid var(--sdlt-border);
+}
+
+.workspace-split.mod-primary-split {
+    border-inline-start: 2px solid var(--sdlt-border);
+    border-start-start-radius: 8px;
+}
+
+.workspace-split.mod-primary-split.is-sidedock-collapsed + .workspace-split.mod-root {
+    border-start-start-radius: 8px;
+}
+
+.workspace-split.mod-root {
+    /* note tabs: a flat tint across the whole tab on hover, separators a step darker than stock */
+    --tab-background-hover: var(--sdlt-overlay-bg);
+    --tab-inner-background-hover: transparent;
+    --tab-divider-color: var(--background-modifier-border);
+    border-inline: 2px solid var(--sdlt-border);
+}
+
+.workspace-split .workspace-tabs {
+    border-bottom: 2px solid var(--sdlt-border);
+}
+
+body:not(.is-mobile) .workspace-split.mod-primary-split .workspace-sidedock-vault-profile {
+    background-color: transparent;
+}
+
+/* the note area keeps Obsidian's darker note background on purpose; only the sidebars show the gradient */
+.mod-sidedock .workspace-tabs .workspace-leaf {
+    background-color: transparent;
+}
+
+/* tabs */
+
+.workspace-tab-header-container {
+    background-image: var(--sdlt-gradient-subtle);
+}
+
+.workspace-tab-header-container .workspace-tab-header.is-active {
+    box-shadow: none;
+}
+
+/* Obsidian outlines a hovered tab and draws a line along its bottom */
+.workspace-tab-header-container .workspace-tab-header:not(.is-active):hover {
+    box-shadow: none;
+}
+
+.mod-root .workspace-tab-header-container-inner {
+    margin: 0;
+    padding: 0;
+}
+
+.mod-root .workspace-tab-header-container .workspace-tab-header {
+    padding-inline-start: 8px;
+}
+
+/* separators between note tabs run the full height of the tab instead of 1em in the middle */
+.workspace .mod-root .workspace-tab-header-inner::after {
+    top: 0;
+    height: 100%;
+}
+
+/* sidebar toolbars */
+
+.workspace-split .nav-header {
+    padding: 4px 6px;
+    border-bottom: 2px solid var(--sdlt-border);
+}
+
+.nav-header .nav-buttons-container {
+    justify-content: flex-start;
+}
+
+/* the button row fills the header height minus padding and border, so the buttons sit centered */
+.workspace-split .nav-header .nav-buttons-container {
+    min-height: calc(var(--header-height) - 10px);
+    align-items: center;
+}
+
+/* the search filter adds one input row (plus its 4px margins) under the buttons; floating content moves down with it */
+body:not(.is-mobile) .workspace-leaf-content:has(> .nav-header > .search-input-container:not([style*="display: none"]), > .view-content > .nav-header > .search-input-container:not([style*="display: none"])) {
+    --sdlt-nav-header-height: calc(var(--header-height) + var(--input-height) + 8px);
+}
+
+/* note header, scaled up to match an h1 */
+
+.view-header-title-parent {
+    display: none;
+}
+
+/* taller than the sidebar toolbars beside it, so it drops the bottom border rather than end at a different line */
+body:not(.is-mobile) .workspace-leaf-content:is([data-type="markdown"], [data-type="bases"]) > .view-header {
+    height: var(--sdlt-note-header-height);
+    border-bottom: 0;
+}
+
+/* centering puts the cap height level with the buttons; most titles are lowercase, so lift the x-height toward them */
+body:not(.is-mobile) .workspace-leaf-content:is([data-type="markdown"], [data-type="bases"]) > .view-header .view-header-title {
+    font-family: var(--sdlt-heading-font);
+    font-size: 38px;
+    translate: 0 -0.08em;
+}
+
+/* scroll-below: headers float over their content as frosted glass */
+
+/* most sidebar toolbars sit directly in the pane; the backlinks one sits inside its view-content */
+body:not(.is-mobile) .workspace-leaf-content > .nav-header,
+body:not(.is-mobile) .workspace-leaf-content > .view-content > .nav-header,
+body:not(.is-mobile) .workspace-leaf-content:is([data-type="markdown"], [data-type="bases"], [data-type="graph"]) > .view-header {
+    position: absolute;
+    z-index: var(--layer-cover);
+    width: 100%;
+    background-image: var(--sdlt-gradient-glass);
+    background-attachment: fixed;
+    backdrop-filter: blur(18px);
+}
+
+/* content starts as far below a floating header as it sits from the pane's sides */
+body:not(.is-mobile) .workspace-leaf-content > .nav-header ~ :last-child,
+body:not(.is-mobile) .workspace-leaf-content > .view-content > .nav-header ~ :last-child {
+    padding-top: calc(var(--sdlt-nav-header-height) + var(--size-4-3));
+}
+
+body:not(.is-mobile) .workspace-leaf-content > .nav-header ~ .nav-files-container {
+    padding-top: calc(var(--sdlt-nav-header-height) + var(--sdlt-tree-inset));
+}
+
+body:not(.is-mobile) .workspace-leaf-content > .nav-header ~ :last-child::-webkit-scrollbar-track,
+body:not(.is-mobile) .workspace-leaf-content > .view-content > .nav-header ~ :last-child::-webkit-scrollbar-track {
+    margin-top: var(--sdlt-nav-header-height);
+}
+
+body:not(.is-mobile) .mod-root .workspace-leaf-content[data-type="markdown"] {
+    --file-margins: calc(var(--sdlt-note-header-height) + 8px) var(--file-margins-x) var(--file-margins-y);
+}
+
+body:not(.is-mobile) .workspace-leaf-content[data-type="markdown"] :is(.cm-scroller, .markdown-preview-view)::-webkit-scrollbar-track {
+    margin-top: var(--sdlt-note-header-height);
+}
+
+body:not(.is-mobile) .workspace-leaf-content[data-type="bases"] .view-content {
+    padding-top: calc(var(--sdlt-note-header-height) + 8px);
+}
+
+body:not(.is-mobile) .workspace-leaf-content[data-type="graph"] .graph-controls {
+    top: var(--header-height);
+}
+
+/* properties */
+
+.metadata-container {
+    margin-block-end: 1rem;
+}
+
+/* backlinks: Obsidian pads the top far less than the sides */
+
+.backlink-pane {
+    padding-top: var(--size-4-3);
+}
+
+/* file tree */
+
+.nav-files-container {
+    --nav-item-radius: 0;
+    padding-inline: var(--sdlt-tree-inset);
+}
+
+.nav-file-title.is-active {
+    --nav-item-background-active: var(--sdlt-overlay-bg);
+    --nav-item-weight-active: bold;
+    margin-block: 4px;
+    border: 1px solid var(--sdlt-overlay-border);
+    box-shadow: var(--sdlt-shadow-active);
+}
+
+/* the active file is marked already; keyboard focus on any other item keeps Obsidian's ring */
+body:not(.is-phone) .workspace-leaf.mod-active .nav-file-title.is-active.has-focus {
+    box-shadow: var(--sdlt-shadow-active);
+}
+
+.nav-file-tag {
+    font-size: 10px;
+    padding: 0 2px;
+}
+
+.nav-file-tag::before {
+    content: '● ';
+    color: var(--sdlt-tag-indicator);
+}
+
+.nav-folder .nav-folder-title-content::before {
+    content: '📂 ';
+}
+
+.nav-folder.is-collapsed .nav-folder-title-content::before {
+    content: '📁 ';
+}
+
+.workspace-leaf-content[data-type="file-explorer"] .nav-file .nav-file-title-content::before {
+    content: '📝 ';
+}
+
+/*
+ * Give a path its own icon with a snippet like this one:
+ * .workspace-leaf-content[data-type="file-explorer"] .nav-file-title[data-path^="00"] .nav-file-title-content::before { content: '⚡ '; }
+ */
+
+/* the vault name heads the tree only in the mobile drawer */
+
+.nav-folder.mod-root > .nav-folder-title .nav-folder-title-content {
+    font-family: var(--sdlt-heading-font);
+    font-size: 22px;
+    padding-bottom: 10px;
+}
+
+.workspace-leaf-content[data-type="file-explorer"] .nav-folder.mod-root > .nav-folder-title .nav-folder-title-content::before {
+    content: '🏠 ';
+}
+
+/* a light sweeping across a file when Obsidian reveals it */
+
+.is-flashing {
+    mix-blend-mode: normal;
+}
+
+.is-flashing.nav-file-title {
+    overflow: clip;
+}
+
+.is-flashing.nav-file-title::after {
+    content: ' ';
+    display: block;
+    position: absolute;
+    width: 200%;
+    height: 100%;
+    margin-top: -4px;
+    margin-inline: -100%;
+    background: linear-gradient(90deg,
+        rgba(255, 255, 255, 0.05) 0%,
+        rgba(255, 255, 255, 0.05) 30%,
+        rgba(255, 255, 255, 0.3) 50%,
+        rgba(255, 255, 255, 0.05) 70%,
+        rgba(255, 255, 255, 0.05) 100%);
+    background-size: 200px 100%;
+    animation: sdlt-flashing 3s linear infinite;
+}
+
+@keyframes sdlt-flashing {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 400px 0;
+    }
+}
+
+/* popovers */
+
+.menu {
+    margin-top: 6px;
+    background-image: var(--sdlt-gradient-subtle);
+}
+
+.suggestion-container {
+    margin-top: 6px;
+    border: var(--menu-border-width) solid var(--menu-border-color);
+    border-radius: var(--menu-radius);
+    background-image: var(--sdlt-gradient-subtle);
+    box-shadow: var(--menu-shadow);
+}
+
+.tooltip,
+.notice {
+    background-image: var(--sdlt-gradient-sheen);
+    backdrop-filter: blur(18px);
+}
+
+/* modals, and settings, which 1.14 opens in a window of its own */
+
+body:not(.is-mobile) .modal-container .modal-bg {
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(12px);
+}
+
+.modal {
+    --modal-sidebar-background: transparent;
+    background-image: var(--sdlt-gradient-base);
+    box-shadow: var(--sdlt-shadow-modal);
+}
+
+.modal .modal-title {
+    font-family: var(--sdlt-heading-font);
+    font-size: 32px;
+}
+
+.vertical-tab-content-container {
+    background: var(--sdlt-gradient-content) fixed;
+    border-inline-start: 2px solid var(--sdlt-border);
+}
+
+.vertical-tab-content {
+    background-color: transparent;
+}
+
+body:not(.is-phone) .vertical-tab-nav-item.is-active {
+    background-color: var(--sdlt-overlay-bg);
+    box-shadow: 0 0 0 1px var(--sdlt-overlay-border), var(--sdlt-shadow-active);
+    font-weight: bold;
+}
+
+.prompt .suggestion-item.is-selected {
+    background: linear-gradient(160deg, transparent, rgba(255, 255, 255, 0.1));
+}
+
+/* buttons and toggles */
+
+button.mod-cta,
+.checkbox-container.is-enabled {
+    --interactive-accent: var(--sdlt-accent-muted);
+    --interactive-accent-hover: var(--sdlt-accent);
+}
+
+/* find in note */
+
+body:not(.is-mobile) .workspace-leaf-content .document-search-container {
+    position: absolute;
+    top: calc(var(--sdlt-note-header-height) + 8px);
+    inset-inline-end: 0;
+    min-width: 400px;
+    padding: 12px;
+    border: 1px solid var(--sdlt-search-border);
+    background-image: var(--sdlt-gradient-glass);
+    background-attachment: fixed;
+    backdrop-filter: blur(18px);
+}
+
+/* graph */
+
+.graph-controls {
+    top: 0;
+    inset-inline-start: 0;
+    border: none;
+    border-inline-end: 2px solid var(--sdlt-border);
+    border-bottom: 2px solid var(--sdlt-border);
+    border-radius: 0 0 8px;
+    background: var(--sdlt-gradient-subtle);
+    backdrop-filter: blur(10px);
+}
+
+.graph-controls:not(.is-close) {
+    border-block-start-width: 0;
+    border-inline-start-width: 0;
+}
+
+.graph-controls.is-close {
+    width: var(--ribbon-width);
+}
+
+body.is-mobile .graph-controls {
+    background: var(--sdlt-gradient-content) fixed;
+    backdrop-filter: none;
+}
+
+.graph-view.color-line-highlight {
+    color: #507090;
+}
+
+/* sync indicator: a glow runs along the title strip while a sync takes longer than half a second */
+
+.status-bar-item .status-bar-item-icon.sync-status-icon {
+    position: relative;
+}
+
+.status-bar-item .status-bar-item-icon.sync-status-icon svg {
+    width: 21px;
+    height: 21px;
+}
+
+.status-bar-item .status-bar-item-icon.sync-status-icon::after {
+    content: ' ';
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 26px;
+    pointer-events: none;
+    mask-image: linear-gradient(180deg, transparent 0%, black 20%, black 80%, transparent 100%);
+}
+
+.status-bar-item .status-bar-item-icon.sync-status-icon.mod-working::after {
+    background: linear-gradient(90deg,
+        transparent 0%,
+        transparent 30%,
+        rgba(40, 40, 255, 0.2),
+        transparent 70%,
+        transparent 100%);
+    background-size: 500px 100%;
+    background-repeat: repeat-x;
+    animation: sdlt-sync-flashing 5s linear infinite, sdlt-sync-fadein 1s linear;
+}
+
+@keyframes sdlt-sync-flashing {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 1000px 0;
+    }
+}
+
+@keyframes sdlt-sync-fadein {
+    0%,
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* selection */
+
+::selection {
+    background-color: var(--text-selection);
+    color: white;
+}
+
+/* callouts */
+
+.callout .callout-content > :last-child {
+    margin-block-end: 0;
+}
+
+.callout .callout-title .callout-icon {
+    margin-top: 0;
+    margin-inline-end: 0.15em;
+}

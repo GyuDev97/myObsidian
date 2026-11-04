@@ -1,0 +1,232 @@
+{
+  "main": {
+    "id": "f43522b7eae09421",
+    "type": "split",
+    "children": [
+      {
+        "id": "d0550bf3eb3b2281",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0e2399f2564f47d3",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "그래프 뷰"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "4636fa772e44c5dd",
+    "type": "split",
+    "children": [
+      {
+        "id": "1b0b5513a9cf6c0e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "669220796fa38f83",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "파일 탐색기"
+            }
+          },
+          {
+            "id": "96d08ac3c376fb14",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "검색"
+            }
+          },
+          {
+            "id": "467f30f1aea0149f",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "북마크"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "7365467a243e55f2",
+    "type": "split",
+    "children": [
+      {
+        "id": "1e7d2c70818d257c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "07136733bef306a2",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "백링크"
+            }
+          },
+          {
+            "id": "eafef570c32dd56a",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "나가는 링크"
+            }
+          },
+          {
+            "id": "4bb6246625125a8b",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "태그"
+            }
+          },
+          {
+            "id": "37d2628737dc1ddf",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "모든 속성"
+            }
+          },
+          {
+            "id": "f4122efef4ea09c8",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "개요"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:빠른 전환기 열기": false,
+      "graph:그래프 뷰 열기": false,
+      "canvas:새 캔버스 만들기": false,
+      "daily-notes:오늘의 일일 노트 열기": false,
+      "templates:템플릿 삽입": false,
+      "command-palette:명령어 팔레트 열기": false,
+      "bases:새 베이스 생성하기": false
+    }
+  },
+  "active": "0e2399f2564f47d3",
+  "lastOpenFiles": [
+    "인생 연표/인생 연대기.md",
+    "경험/중학교 시절 — 개발과 진로를 선택하다.md",
+    "경험/어린 시절 — 컴퓨터와 개발의 시작.md",
+    "경험/초등학교 시절 — 뛰어놀던 어린아이.md",
+    "경험/고등학교 시절 — 개발로 첫 성과를 만들다.md.bak-before-childhood-update-20261105",
+    "경험/개발과의 첫 만남.md.bak-before-childhood-update-20261105",
+    "인생 연표/인생 연대기.md.bak-before-childhood-update-20261105",
+    "정체성/나에 대하여.md.bak-before-childhood-update-20261105",
+    "홈.md",
+    "경험/2015 대한민국 마이스터 대전 영상미디어 공모전 동상.md",
+    "경험/2015 빛공해사진·UCC 공모전 최우수상.md",
+    "경험/2014년 디자인·사진 공모전 활동.md",
+    "경험/2014 마이스터 꿈나무 기능경진대회 은상.md",
+    "경험/2014 대구광역시 지방기능경기대회 우수상.md",
+    "경험/2014년 동계 웹디자인 선수 집체교육.md",
+    "경험/제12회 구미시 멀티미디어 공모전 입선.md",
+    "경험/2013년 하계 웹디자인 선수 집체교육.md",
+    "경험/2013년 웹디자인·개발 교육 수료.md",
+    "무제.base",
+    "경험/개발과의 첫 만남.md.bak-before-event-split-20261105",
+    "경험/고등학교 시절 — 개발로 첫 성과를 만들다.md.bak-before-event-split-20261105",
+    "경험/2013-2015 수상 및 교육 기록.md.bak-before-event-split-20261105",
+    "경험/경험 안내.md",
+    "템플릿/템플릿 안내.md",
+    "경험/2013-2015 수상 및 교육 기록.md",
+    "Assets/Evidence/School/2015/img004.jpg",
+    "Assets/Evidence/School/2015/img003.jpg",
+    "Assets/Evidence/School/2015/2015_11_07_마이스터대전_영상미디어공모전_동상.jpg",
+    "Assets/Evidence/School/2015/2015_08_11_빛공해사진공모전_최우수상.jpg",
+    "Assets/Evidence/School/2015/2015_06_24_진주디지털아트대전공모전_입선.jpg",
+    "Assets/Evidence/School/2015/2015_05_14_우행시공모전_입선.jpg",
+    "Assets/Evidence/School/2015",
+    "Assets/Evidence/School/2014/스캔0002.jpg",
+    "Assets/Evidence/School/2014/스캔0001.jpg",
+    "Assets/Evidence/School/2014/로타리장학증서(2013_02_24).jpg",
+    "Assets/Evidence/School/2014/동계경운대학교집체교육(2013_01).jpg",
+    "Assets/Evidence/School/2014",
+    "경험/고등학교 시절 — 개발로 첫 성과를 만들다.md",
+    "커리어/AI Agent Engineer 포트폴리오 초안.md",
+    "프로젝트/TrailGo MVP 작업 정리 및 로드맵.md",
+    "프로젝트/GyuNexus.md",
+    "프로젝트/고급유노트.md",
+    "프로젝트/GyuOS 개발 기록.md",
+    "프로젝트/workMate 개발 현황 및 다음 작업.md",
+    "템플릿/일일 기록 템플릿.md",
+    "일상/일상 안내.md"
+  ]
+}
